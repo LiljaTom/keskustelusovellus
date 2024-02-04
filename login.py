@@ -13,12 +13,15 @@ def login(username, password):
 
     if check_password_hash(user.password, password):
         session["user_id"] = user.id
+        print(user)
+        session["username"] = username
         return True
     
     return False
 
 def logout():
     del session["user_id"]
+    del session["username"]
 
 def getUserId():
     return session.get("user_id", 0)
