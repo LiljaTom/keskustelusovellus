@@ -13,7 +13,9 @@
         <tbody>
             {% for group in groups %}
             <tr>
-                <td>{{ group[1] }}</td>
+                <td>
+                    <a href="/groups/{{group[2]}}">{{ group[1] }}</a>
+                </td>
                 <td>{{ group[0] }}</td>
             </tr>
             {% endfor %}
