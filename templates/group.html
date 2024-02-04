@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Group{% endblock %}
+{% block content%}
+<div>
+    <h1>{{ group[1] }}</h1>
+    <p>{{ group[0] }}</p>
+    <h2>Threads</h2>
+    <p>Threads will be listed here</p>
+    <button>
+        <a href="/">Add thread</a>
+    </button>
+</div>
+{% endblock %}

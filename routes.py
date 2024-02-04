@@ -54,3 +54,8 @@ def getGroupFrom():
 def getGroups():
     groupList = group.getGroups()
     return render_template("groups.html", groups=groupList)
+
+@app.route("/groups/<int:id>")
+def getGroup(id):
+    groupById = group.getOneGroup(id)
+    return render_template("group.html", group=groupById)

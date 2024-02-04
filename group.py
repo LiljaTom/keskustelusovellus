@@ -20,3 +20,7 @@ def getGroups():
     result = db.session.execute(sql)
     return result.fetchall()
 
+def getOneGroup(id):
+    sql = text("SELECT * FROM groups WHERE id=:id")
+    result = db.session.execute(sql, {"id": id})
+    return result.fetchone()
