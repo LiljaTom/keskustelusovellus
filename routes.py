@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, redirect, request
-import login, register
+import login, register, group
 
 @app.route("/login", methods=["GET"])
 def getLogin():
@@ -35,3 +35,22 @@ def postRegister():
         return redirect("/")
     else:
         return render_template("register.html", error="Username taken")
+
+@app.route("/groups/new", methods=["POST"])
+def postNewGroup():
+    name = request.form["name"]
+    description = request.form["description"]
+
+    if group.createGroup(name, description):
+        return redirect("/groups")
+    
+    return render_template("newGroup.html")
+
+@app.route("/groups/new", methods=["GET"])
+def getGroupFrom():
+    return render_template("newGroup.html")
+
+@app.route("/groups", methods=["GET"])
+def getGroups():
+    groupList = group.getGroups()
+    return render_template("groups.html", groups=groupList)
