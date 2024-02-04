@@ -27,10 +27,11 @@ def postRegister():
     password = request.form["password"]
     passwordConfirmation = request.form["passwordConfirmation"]
 
+
     if password != passwordConfirmation:
-        render_template("register.html", error="Passwords are not matching")
+        return render_template("register.html", error="Passwords are not matching")
     
     if register.register(username, password):
-        redirect("/")
+        return redirect("/")
     else:
-        render_template("register.html", error="Username taken")
+        return render_template("register.html", error="Username taken")
