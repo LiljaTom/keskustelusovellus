@@ -17,6 +17,11 @@ def postLogin():
 
     return render_template("login.html", error="Invalid username or password")
 
+@app.route("/logout")
+def postLogout():
+    login.logout()
+    return redirect("/")
+
 @app.route("/register")
 def getRegister():
     return render_template("register.html")
