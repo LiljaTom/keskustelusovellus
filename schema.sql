@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS groups CASCADE;
+DROP TABLE IF EXISTS threads CASCADE;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -13,6 +14,14 @@ CREATE TABLE groups (
     description TEXT,
     user_id INTEGER REFERENCES users
 );
+
+CREATE TABLE threads (
+    id SERIAL PRIMARY KEY,
+    content TEXT,
+    group_id INTEGER REFERENCES groups,
+    title TEXT,
+    user_id INTEGER REFERENCES users
+)
 
 
 --INSERT INTO users (username, password) VALUES ('username', 'password')
