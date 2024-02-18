@@ -5,9 +5,32 @@
     <h1>{{ group[1] }}</h1>
     <p>{{ group[2] }}</p>
     <h2>Threads</h2>
-    <p>Threads will be listed here</p>
-    <button>
-        <a href="/">Add thread</a>
-    </button>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for thread in threads %}
+            <tr>
+                <td>
+                    <a href="/">{{ thread[0] }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="/groups/{{group[0]}}/threads" method="POST">
+        <div>
+            <label>Title</label>
+            <input type="text" name="title">
+        </div>
+        <div>
+            <label>Content</label>
+            <input type="text" name="content">
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
 </div>
 {% endblock %}
