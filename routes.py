@@ -77,4 +77,9 @@ def createThread(id):
         return render_template("group.html", group=groupById, threads=threads)
     
     return redirect("/")
+
+@app.route("/groups/<int:groupId>/threads/<int:threadId>")
+def getThread(groupId, threadId):
+    threadById = thread.getThreadById(threadId)
+    return render_template("thread.html", thread=threadById)
         

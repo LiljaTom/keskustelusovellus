@@ -1,26 +1,21 @@
 {% extends "base.html" %}
 {% block title %}Group{% endblock %}
 {% block content%}
-<div>
+<div class="container">
     <h1>{{ group[1] }}</h1>
     <p>{{ group[2] }}</p>
     <h2>Threads</h2>
-    <table>
-        <thead>
-            <tr>
-                <th scope="col">Title</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for thread in threads %}
-            <tr>
-                <td>
-                    <a href="/">{{ thread[0] }}</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class=" container border">
+
+        {% for thread in threads %}
+        <div class="container border">
+            <strong><a href="/groups/{{group[0]}}/threads/{{thread[0]}}">{{ thread[1] }}</a></strong>
+            <p>
+                {{ thread[2] }}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
     <form action="/groups/{{group[0]}}/threads" method="POST">
         <div>
             <label>Title</label>

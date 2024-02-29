@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Thread{% endblock %}
+{% block content%}
+<div class="container">
+    <h1>{{ thread[1] }}</h1>
+
+    <div class=" container border">
+        <p>{{ thread[2] }}</p>
+    </div>
+    <div>
+        <form action="" methods="POST">
+            <div>
+                <label>Comment</label>
+                <input type="text" name="comment"/>
+            </div>
+            {% if error %}
+            <p>Error: {{ error }}</p>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Add comment</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
