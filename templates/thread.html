@@ -7,8 +7,13 @@
     <div class=" container border">
         <p>{{ thread[2] }}</p>
     </div>
+    {% for comment in comments %}
+    <div class="container border">
+        <p>{{ comment[0] }}</p>
+    </div>
+    {% endfor %}
     <div>
-        <form action="" methods="POST">
+        <form action="/groups/{{group[0]}}/threads/{{thread[0]}}/comments" method="POST">
             <div>
                 <label>Comment</label>
                 <input type="text" name="comment"/>

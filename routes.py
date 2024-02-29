@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, redirect, request
-import login, register, group, thread
+import login, register, group, thread, comment
 
 @app.route("/login", methods=["GET"])
 def getLogin():
@@ -81,5 +81,19 @@ def createThread(id):
 @app.route("/groups/<int:groupId>/threads/<int:threadId>")
 def getThread(groupId, threadId):
     threadById = thread.getThreadById(threadId)
-    return render_template("thread.html", thread=threadById)
+    commentsInThread = comment.getCommentsInThread(threadId)
+    groupById = group.getOneGroup(groupId)
+
+    return render_template("thread.html", thread=threadById, comments=commentsInThread, group=groupById)
+
+@app.route("/groups/<int:groupId>/threads/<int:threadId>/comments", methods=["POST"])
+def createCommentForThread(groupId, threadId):
+    content = request.form["comment"]
+    if comment.createComment(threadId, content):
+        threadById = thread.getThreadById(threadId)
+        commentsInThread = comment.getCommentsInThread(threadId)
+        groupById = group.getOneGroup(groupId)
+        return render_template("thread.html", thread=threadById, comments=commentsInThread, group=groupById)
+    
+    return redirect("/")
         
