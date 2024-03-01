@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, redirect, request
-import login, register, group, thread, comment
+import login, register, group, thread, comment, likes
 
 @app.route("/login", methods=["GET"])
 def getLogin():
@@ -75,6 +75,15 @@ def createThread(id):
         groupById = group.getOneGroup(id)
         threads = thread.getThreadsInGroup(id)
         return render_template("group.html", group=groupById, threads=threads)
+    
+    return redirect("/")
+
+@app.route("/groups/<int:groupId>/threads/<int:threadId>/like", methods=["POST"])
+def likeThread(groupId, threadId):
+    threadById = thread.getThreadById(threadId)
+    commentsInThread = comment.getCommentsInThread(threadId)
+    if likes.addLikeToThread(threadId):
+        return render_template("thread.html", thread=threadById, comments=commentsInThread)
     
     return redirect("/")
 
