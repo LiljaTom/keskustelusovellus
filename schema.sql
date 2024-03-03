@@ -33,7 +33,7 @@ CREATE TABLE comments (
 );
 
 CREATE TABLE threadlikes (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users,
     thread_id INTEGER REFERENCES threads
 );
