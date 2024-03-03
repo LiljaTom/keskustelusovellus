@@ -63,6 +63,12 @@ def postNewGroup():
     name = request.form["name"]
     description = request.form["description"]
 
+    if len(name) < 3:
+        return redirect("/groups")
+    
+    if len(description) < 3:
+        return redirect("/groups")
+
     if group.createGroup(name, description):
         return redirect("/groups")
     
