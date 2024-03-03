@@ -18,6 +18,7 @@
         </div>
         {% endfor %}
     </div>
+    {% if session.username %}
     <form action="/groups/{{group[0]}}/threads" method="POST">
         <div>
             <label>Title</label>
@@ -29,5 +30,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
+    {% endif %}
 </div>
 {% endblock %}

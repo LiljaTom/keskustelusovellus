@@ -21,6 +21,8 @@
             {% endfor %}
         </tbody>
     </table>
+    {% if session.username %}
     <a href="/groups/new">Add new group</a>
+    {% endif %}
 </div>
 {% endblock %}
