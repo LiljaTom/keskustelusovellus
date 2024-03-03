@@ -18,7 +18,7 @@ def createComment(threadId, content):
         return False
     
 def getCommentsInThread(threadId):
-    sql = text("SELECT content from comments WHERE thread_id=:thread_id")
+    sql = text("SELECT comments.content, users.username, comments.id from comments JOIN users ON comments.user_id = users.id WHERE thread_id=:thread_id ORDER BY 3")
     result = db.session.execute(sql, {"thread_id": threadId})
 
     return result.fetchall()

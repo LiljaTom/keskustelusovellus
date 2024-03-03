@@ -19,8 +19,13 @@
         </div>
     </div>
     {% for comment in comments %}
-    <div class="container border">
-        <p>{{ comment[0] }}</p>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">{{ comment[0] }}</p>
+        </div>
+        <div class="card-footer text-body-secondary">
+            <p class="card-text">By: {{ comment[1] }}</p>
+        </div>
     </div>
     {% endfor %}
     <div>
