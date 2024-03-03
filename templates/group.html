@@ -5,14 +5,16 @@
     <h1>{{ group[1] }}</h1>
     <p>{{ group[2] }}</p>
     <h2>Threads</h2>
-    <div class=" container border">
-
+    <div>
         {% for thread in threads %}
-        <div class="container border">
-            <strong><a href="/groups/{{group[0]}}/threads/{{thread[0]}}">{{ thread[1] }}</a></strong>
-            <p>
-                {{ thread[2] }}
-            </p>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><a href="/groups/{{group[0]}}/threads/{{thread[0]}}">{{ thread[1] }}</a></h5>
+                <p class="card-text">{{ thread[2] }}</p>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Creator and time
+            </div>
         </div>
         {% endfor %}
     </div>
