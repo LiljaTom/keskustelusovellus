@@ -98,6 +98,10 @@ def createThread(id):
 
 @app.route("/groups/<int:groupId>/threads/<int:threadId>/like", methods=["POST"])
 def likeThread(groupId, threadId):
+    userId = login.getUserId()
+    if likes.hasUserLikedThread(userId, threadId):
+        return redirectToThread(threadId, groupId)
+    
     if likes.addLikeToThread(threadId):
         return redirectToThread(threadId, groupId)
         

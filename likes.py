@@ -20,3 +20,9 @@ def getThreadLikes(threadId):
     sql = text("SELECT COUNT(*) FROM threadlikes WHERE thread_id=:threadId")
     result = db.session.execute(sql, {"threadId": threadId})
     return result.fetchone()
+
+def hasUserLikedThread(userId, threadId):
+    sql = text("SELECT id FROM threadlikes WHERE thread_id=:threadId AND user_id=:userId")
+    result = db.session.execute(sql, {"threadId": threadId, "userId": userId})
+ 
+    return result.fetchone() != None
