@@ -32,12 +32,18 @@ def postRegister():
     password = request.form["password"]
     passwordConfirmation = request.form["passwordConfirmation"]
 
+    if len(username) < 3:
+        return render_template("register.html", error="Username too short. It must be at least 3 characters")
+    
+    if len(password) < 4:
+        return render_template("register.html", error="Password too short. Must be at least 4 characters")
+
 
     if password != passwordConfirmation:
         return render_template("register.html", error="Passwords are not matching")
     
     if register.register(username, password):
-        return redirect("/")
+        return render_template("login.html")
     else:
         return render_template("register.html", error="Username taken")
 
