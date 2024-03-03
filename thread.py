@@ -17,12 +17,12 @@ def createThread(groupId, content, title):
         return False
     
 def getThreadsInGroup(groupId):
-    sql = text("SELECT id, title, content FROM threads WHERE group_id=:group_id")
+    sql = text("SELECT threads.id, threads.title, threads.content, users.username FROM threads JOIN users ON threads.user_id = users.id WHERE group_id=:group_id")
     result = db.session.execute(sql, {"group_id": groupId})
 
     return result.fetchall()
 
 def getThreadById(threadId):
-    sql = text("SELECT id, title, content from threads WHERE id=:threadId")
+    sql = text("SELECT threads.id, threads.title, threads.content, users.username from threads JOIN users ON threads.user_id = users.id WHERE threads.id=:threadId")
     result = db.session.execute(sql, {"threadId": threadId})
     return result.fetchone()
