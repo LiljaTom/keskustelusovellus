@@ -15,3 +15,8 @@ def addLikeToThread(threadId):
         return True
     except:
         return False
+    
+def getThreadLikes(threadId):
+    sql = text("SELECT COUNT(*) FROM threadlikes WHERE thread_id=:threadId")
+    result = db.session.execute(sql, {"threadId": threadId})
+    return result.fetchone()

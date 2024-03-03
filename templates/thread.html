@@ -6,6 +6,13 @@
         <div class="card-body">
             <h2 class="card-title">{{ thread[1] }}</h2>
             <p class="card-text">{{ thread[2] }}</p>
+            <br />
+            <div>
+                <p class="card-text">Likes: {{ likes[0] }}</p>
+                <form action="/groups/{{group[0]}}/threads/{{thread[0]}}/like" method="POST">
+                    <button type="submit" class="btn btn-primary">Like</button>
+                </form>
+            </div>
         </div>
         <div class="card-footer text-body-secondary">
             By: {{ thread[3] }}

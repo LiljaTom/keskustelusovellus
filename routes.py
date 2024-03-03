@@ -87,9 +87,11 @@ def createThread(id):
 @app.route("/groups/<int:groupId>/threads/<int:threadId>/like", methods=["POST"])
 def likeThread(groupId, threadId):
     threadById = thread.getThreadById(threadId)
+    groupById = group.getOneGroup(groupId)
     commentsInThread = comment.getCommentsInThread(threadId)
     if likes.addLikeToThread(threadId):
-        return render_template("thread.html", thread=threadById, comments=commentsInThread)
+        threadLikes = likes.getThreadLikes(threadId)
+        return render_template("thread.html", thread=threadById, comments=commentsInThread, likes=threadLikes, group=groupById)
     
     return redirect("/")
 
@@ -98,8 +100,9 @@ def getThread(groupId, threadId):
     threadById = thread.getThreadById(threadId)
     commentsInThread = comment.getCommentsInThread(threadId)
     groupById = group.getOneGroup(groupId)
+    threadLikes = likes.getThreadLikes(threadId)
 
-    return render_template("thread.html", thread=threadById, comments=commentsInThread, group=groupById)
+    return render_template("thread.html", thread=threadById, comments=commentsInThread, group=groupById, likes=threadLikes)
 
 @app.route("/groups/<int:groupId>/threads/<int:threadId>/comments", methods=["POST"])
 def createCommentForThread(groupId, threadId):
