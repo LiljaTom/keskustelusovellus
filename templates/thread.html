@@ -9,7 +9,7 @@
             <br />
             <div>
                 <p class="card-text">Likes: {{ likes[0] }}</p>
-                <form action="/groups/{{group[0]}}/threads/{{thread[0]}}/like" method="POST">
+                <form action="/groups/{{group}}/threads/{{thread[0]}}/like" method="POST">
                     <button type="submit" class="btn btn-primary">Like</button>
                 </form>
             </div>
@@ -24,7 +24,7 @@
     </div>
     {% endfor %}
     <div>
-        <form action="/groups/{{group[0]}}/threads/{{thread[0]}}/comments" method="POST">
+        <form action="/groups/{{group}}/threads/{{thread[0]}}/comments" method="POST">
             <div>
                 <label>Comment</label>
                 <input type="text" name="comment"/>
